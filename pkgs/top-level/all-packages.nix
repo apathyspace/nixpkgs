@@ -20611,6 +20611,7 @@ with pkgs;
 
   tpm2-tss = callPackage ../development/libraries/tpm2-tss {
     autoreconfHook = buildPackages.autoreconfHook269;
+    openssl = openssl_1_1;
   };
 
   tremor = callPackage ../development/libraries/tremor { };
