@@ -28,6 +28,12 @@ vscode-utils.buildVscodeMarketplaceExtension {
     EOF
     }
     jq "$(print_jq_query)" ./package.json | sponge ./package.json
+    
+    # Precreate './temp/jupyter/kernels/' in the extention root.
+    # This works around observed extension load failure on 
+    # 'getKernelSpecTempRegistrationFolder()'s attempt to create it 
+    # inside nix store at runtime, while looking for jupyter kernels
+    mkdir --parents ./temp/jupyter/kernels
   '';
 
   meta = with lib; {
